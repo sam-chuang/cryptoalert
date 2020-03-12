@@ -1,28 +1,38 @@
-import { dirname } from "path"
+import { dirname, resolve } from "path"
 import { fileURLToPath } from "url"
 import fs from "fs-extra"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const rootDirectory = process.cwd()
+const buildDirectory = resolve("./dist")
+console.log("rootDirectory", rootDirectory, "buildDirectory", buildDirectory)
 
-console.log("__filename", __filename, "__dirname", __dirname)
+const serviceWorkerPath = resolve("./src/service-worker.js")
+console.log("serviceWorkerPath", serviceWorkerPath)
 
 //TODO: get version from package.json
 const document = `
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cryptoalert Me</title>
     <meta charset="UTF-8" />
+    <title>Cryptoalert Me</title>
+    <link rel="manifest" href="./manifest.json">
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js')
+        }
+    </script>
   </head>
 
   <body>
     <div id="app"></div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module">
+      import app from './index.js'
+      app(document.getElementById("app"))
+    </script>
   </body>
 </html>
 `
 
-//TODO: get dist folder from setting?
-fs.outputFileSync(`${__dirname}/dist/index.html`, document)
+fs.outputFileSync(`${buildDirectory}/index.html`, document)

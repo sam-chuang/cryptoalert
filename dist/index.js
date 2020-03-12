@@ -1,2 +1,1 @@
-import app from "./app/index.js";
-app(document.getElementById("app"));
+export { default } from "./app/index.js";

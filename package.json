@@ -4,12 +4,13 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "npm-run-all build:index-page build:esm --parallel build:js:watch start:server",
+    "start": "npm-run-all build:index-page build:esm copy:esm --parallel build:js:watch start:server",
     "start:server": "es-dev-server --watch --root-dir dist --open index.html",
-    "build:esm": "snowpack --include \"src/**/*.js\" --dest dist/web_modules --hash --source-map",
-    "build:js": "babel src/ --out-dir dist",
-    "build:js:watch": "babel src/ --out-dir dist --watch",
-    "build:index-page": "node --experimental-modules index.html.js"
+    "build:esm": "snowpack --include \"src/**/*.js\" --dest web_modules --hash --source-map",
+    "build:js": "babel src --out-dir dist",
+    "build:js:watch": "babel src --out-dir dist --watch",
+    "build:index-page": "node --experimental-modules index.html.js",
+    "copy:esm": "copyfiles -a web_modules/* dist"
   },
   "dependencies": {
     "htm": "^3.0.3",
@@ -19,6 +20,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.7",
     "babel-plugin-htm": "^3.0.0",
+    "copyfiles": "^2.2.0",
     "es-dev-server": "^1.43.0",
     "fs-extra": "^8.1.0",
     "jest": "^25.1.0",
