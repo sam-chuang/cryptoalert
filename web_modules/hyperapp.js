@@ -482,5 +482,9 @@ var app = function(props) {
   dispatch(props.init);
 };
 
+
+var hyperapp = null;
+
+export default hyperapp;
 export { Lazy, app, h };
 //# sourceMappingURL=hyperapp.js.map

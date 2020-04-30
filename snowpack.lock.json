@@ -1,5 +1,6 @@
 {
   "imports": {
-    "htm": "https://cdn.pika.dev/pin/htm@v3.0.4-PLoxEux0X75jBr5u58kM/htm.js"
+    "htm": "https://cdn.pika.dev/pin/htm@v3.0.4-PLoxEux0X75jBr5u58kM/htm.js",
+    "hyperapp": "https://cdn.pika.dev/pin/hyperapp@v2.0.4-BmYf4X5O5bsacW4nID88/hyperapp.js"
   }
 }

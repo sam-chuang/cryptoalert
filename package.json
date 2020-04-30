@@ -6,14 +6,14 @@
   "scripts": {
     "start": "npm-run-all prepare:modules copy:modules build:index-page --parallel build:js:watch start:server",
     "start:server": "es-dev-server --watch --root-dir dist --open index.html",
-    "build:js": "babel src --out-dir dist",
-    "build:js:watch": "babel src --out-dir dist --watch",
+    "build:js": "babel src --out-dir dist --copy-files",
+    "build:js:watch": "babel src --out-dir dist --copy-files --watch",
     "build:index-page": "node --experimental-modules index.html.js",
     "prepare:modules": "snowpack --config snowpack.config.js",
-    "copy:modules": "copyfiles -a modules/**/* dist"
+    "copy:modules": "copyfiles -a web_modules/**/* dist"
   },
   "dependencies": {
-    "htm": "^3.0.3",
+    "htm": "^3.0.4",
     "hyperapp": "^2.0.4"
   },
   "devDependencies": {
