@@ -1,4 +1,4 @@
-import { app, h } from "/web_modules/hyperapp.js?rev=b1efa64065";
+import { app, h } from "/modules/hyperapp.js";
 export default (node => {
   return app({
     init: 0,

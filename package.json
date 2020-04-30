@@ -4,13 +4,13 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start": "npm-run-all build:index-page build:esm copy:esm --parallel build:js:watch start:server",
+    "start": "npm-run-all prepare:modules copy:modules build:index-page --parallel build:js:watch start:server",
     "start:server": "es-dev-server --watch --root-dir dist --open index.html",
-    "build:esm": "snowpack --include \"src/**/*.js\" --dest web_modules --hash --source-map",
     "build:js": "babel src --out-dir dist",
     "build:js:watch": "babel src --out-dir dist --watch",
     "build:index-page": "node --experimental-modules index.html.js",
-    "copy:esm": "copyfiles -a web_modules/* dist"
+    "prepare:modules": "snowpack --config snowpack.config.js",
+    "copy:modules": "copyfiles -a modules/**/* dist"
   },
   "dependencies": {
     "htm": "^3.0.3",
@@ -18,21 +18,20 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
+    "@babel/core": "^7.9.6",
     "babel-plugin-htm": "^3.0.0",
     "copyfiles": "^2.2.0",
-    "es-dev-server": "^1.43.0",
-    "fs-extra": "^8.1.0",
-    "jest": "^25.1.0",
+    "es-dev-server": "^1.47.0",
+    "fs-extra": "^9.0.0",
+    "jest": "^25.5.2",
     "jest-chain": "^1.1.5",
     "jest-extended": "^0.11.5",
-    "move-cli": "^1.2.1",
     "npm-run-all": "^4.1.5",
-    "snowpack": "^1.6.0"
+    "snowpack": "^1.7.1"
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "./test.config.js"
+      "./jest.config.js"
     ]
   },
   "homepage": "https://github.com/sam-chuang/cryptoalert#readme"

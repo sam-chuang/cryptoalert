@@ -1,4 +1,5 @@
-web_modules
+# web modules
+.modules
 
 # Logs
 logs
